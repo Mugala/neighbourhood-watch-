@@ -1,0 +1,18 @@
+h1{
+    color: blueviolet;
+}
+
+body{
+    background-image: url(../img/watchbg.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+nav{
+    background-color: #BAAC8E;
+}
+nav a{
+    color: white;
+}
