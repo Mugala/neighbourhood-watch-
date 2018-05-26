@@ -43,6 +43,7 @@ class Business (models.Model):
     business_name = models.CharField(max_length = 30)
     user = models.ForeignKey(User)
     neighbourhood = models.ForeignKey(Neighbourhood)
+    business_image = models.ImageField(upload_to = 'biz-image/', null= True)
     business_email = models.EmailField()
 
     def __str__(self):
@@ -55,7 +56,7 @@ class Business (models.Model):
         self.delete()
 
     @classmethod
-    def search_by_Business(cls,search_term):
-        business = cls.objects.filter(image_category__name__icontains=search_term)
+    def search_by_business(cls,search_term):
+        business = cls.objects.filter(business_name__icontains=search_term)
         return business
     
