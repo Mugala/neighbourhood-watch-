@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the Hood Watch newsletter You will receive the most up-to date news about your neighbourhood here.

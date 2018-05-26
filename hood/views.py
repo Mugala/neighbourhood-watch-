@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Neighbourhood,Business,User,NewsLetterRecipient
 from .forms import NewsLetterForm
+from .email import send_welcome_email
 
 # Create your views here.
 
@@ -13,6 +14,11 @@ def home(request):
             email = form.cleaned_data['email']
             recipient = NewsLetterRecipient(name = name,email =email)
             recipient.save()
+
+            recipient = NewsLetterRecipient(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email)
+
             HttpResponseRedirect('home')
     else:
         form = NewsLetterForm()
