@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Neighbourhood,Business,User,NewsLetterRecipient
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm,NeighbourhoodDetails,BusinessDetails,UserProfile
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
@@ -28,6 +28,34 @@ def home(request):
     else:
         form = NewsLetterForm()
     return render(request, "home.html", {"letterForm":form})
+
+def user_profile(request):  
+    current_user = request.user
+    if request.method =='POST':
+        form = UserProfile(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+
+            return redirect("home")
+    else:
+        form = UserProfile()
+    return render (request, 'all-updates/user_profile.html',{"form":form})
+
+# def register_car(request):  
+#     current_user = request.user
+#     if request.method =='POST':
+#         form = CarDetails(request.POST, request.FILES)
+#         if form.is_valid():
+#             carProfile = form.save(commit=False)
+#             carProfile.user = current_user
+#             carProfile.save()
+
+#             return redirect("dwelcome")
+#     else:
+#         carform = CarDetails()
+#     return render (request, 'dtemp/car_profile.html',{"carform":carform})
     
 def search_results(request):
 
