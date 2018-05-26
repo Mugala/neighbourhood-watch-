@@ -43,19 +43,19 @@ def user_profile(request):
         form = UserProfile()
     return render (request, 'all-updates/user_profile.html',{"form":form})
 
-# def register_car(request):  
-#     current_user = request.user
-#     if request.method =='POST':
-#         form = CarDetails(request.POST, request.FILES)
-#         if form.is_valid():
-#             carProfile = form.save(commit=False)
-#             carProfile.user = current_user
-#             carProfile.save()
+def register_hood(request):  
+    current_user = request.user
+    if request.method =='POST':
+        form = NeighbourhoodDetails(request.POST, request.FILES)
+        if form.is_valid():
+            hood_Profile = form.save(commit=False)
+            hood_Profile.user = current_user
+            hood_Profile.save()
 
-#             return redirect("dwelcome")
-#     else:
-#         carform = CarDetails()
-#     return render (request, 'dtemp/car_profile.html',{"carform":carform})
+            return redirect("home")
+    else:
+        hoodform = NeighbourhoodDetails()
+    return render (request, 'all-updates/hood_profile.html',{"hoodform":hoodform})
     
 def search_results(request):
 
