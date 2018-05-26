@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^search/', views.search_results, name='search_results'),
     url('^accounts/hood_profile/', views.register_hood, name = 'hood_profile'),
     url('^accounts/profile/', views.user_profile, name = 'user_profile'),
+    url('^accounts/business_profile/', views.register_business, name = 'register_business'),
 ]
 
 if settings.DEBUG:

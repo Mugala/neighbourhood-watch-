@@ -56,6 +56,20 @@ def register_hood(request):
     else:
         hoodform = NeighbourhoodDetails()
     return render (request, 'all-updates/hood_profile.html',{"hoodform":hoodform})
+
+def register_business(request):  
+    current_user = request.user
+    if request.method =='POST':
+        form = BusinessDetails(request.POST, request.FILES)
+        if form.is_valid():
+            business_Profile = form.save(commit=False)
+            business_Profile.user = current_user
+            business_Profile.save()
+
+            return redirect("home")
+    else:
+        businessform = BusinessDetails()
+    return render (request, 'all-updates/business_profile.html',{"businessform":businessform})
     
 def search_results(request):
 
