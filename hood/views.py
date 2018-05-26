@@ -1,11 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Neighbourhood,Business,User
+from django.http import HttpResponse, Http404,HttpResponseRedirect
+from .models import Neighbourhood,Business,User,NewsLetterRecipient
+from .forms import NewsLetterForm
 
 # Create your views here.
 
-def home(request):
-    return render(request, "home.html")
+def home(request):    
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = NewsLetterRecipient(name = name,email =email)
+            recipient.save()
+            HttpResponseRedirect('home')
+    else:
+        form = NewsLetterForm()
+    return render(request, "home.html", {"letterForm":form})
 
 def search_results(request):
 

@@ -2,4 +2,12 @@
 {% load bootstrap3%}
 {% block content %}
 {{block.super}}
+<div class="container-fluid">
+
+    <form  action="{%url 'home'%}" method="post">
+      {%csrf_token%}
+  
+      {% bootstrap_form letterForm layout='inline' %}
+      <input type="submit" value="Subscribe">
+    </form>
 {% endblock %} 

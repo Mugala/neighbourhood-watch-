@@ -3,6 +3,10 @@ import datetime as dt
 
 # Create your models here.
 
+class NewsLetterRecipient (models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
+
 class Neighbourhood (models.Model):
     name = models.CharField(max_length = 60)
     location = models.CharField(max_length = 60)
