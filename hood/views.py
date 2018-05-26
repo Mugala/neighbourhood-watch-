@@ -11,7 +11,8 @@ def welcome (request):
     return render(request, "welcome.html")
 
 @login_required(login_url='/accounts/login/')
-def home(request):    
+def home(request):
+    details = Neighbourhood.neighbourhood_details()    
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -27,7 +28,7 @@ def home(request):
             HttpResponseRedirect('home')
     else:
         form = NewsLetterForm()
-    return render(request, "home.html", {"letterForm":form})
+    return render(request, "home.html", {"details":details, "letterForm":form})
 
 def user_profile(request):  
     current_user = request.user
@@ -38,7 +39,7 @@ def user_profile(request):
             profile.user = current_user
             profile.save()
 
-            return redirect("home")
+            return redirect("hood_profile")
     else:
         form = UserProfile()
     return render (request, 'all-updates/user_profile.html',{"form":form})

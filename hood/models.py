@@ -10,7 +10,7 @@ class NewsLetterRecipient (models.Model):
 class Neighbourhood (models.Model):
     name = models.CharField(max_length = 60)
     location = models.CharField(max_length = 60)
-    occupants_count = models.IntegerField()
+    occupants_count = models.IntegerField(null=True)
     admin = models.CharField(max_length = 20)
     
     def __str__(self):
@@ -31,7 +31,7 @@ class Neighbourhood (models.Model):
 class User (models.Model):
     name = models.CharField(max_length = 30)
     id_number = models.IntegerField()
-    neighbourhood = models.ForeignKey(Neighbourhood)
+    neighbourhood = models.ForeignKey(Neighbourhood, null=True)
     email = models.EmailField()
 
     def __str__(self):
