@@ -3,9 +3,14 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Neighbourhood,Business,User,NewsLetterRecipient
 from .forms import NewsLetterForm
 from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def welcome (request):    
+    return render(request, "welcome.html")
+
+@login_required(login_url='/accounts/login/')
 def home(request):    
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
@@ -23,7 +28,7 @@ def home(request):
     else:
         form = NewsLetterForm()
     return render(request, "home.html", {"letterForm":form})
-
+    
 def search_results(request):
 
     if 'business' in request.GET and request.GET["business"]:
