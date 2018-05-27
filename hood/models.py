@@ -1,5 +1,6 @@
 from django.db import models
 import datetime as dt
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,7 +29,7 @@ class Neighbourhood (models.Model):
         return details
         
 
-class User (models.Model):
+class User_profile (models.Model):
     name = models.CharField(max_length = 30)
     id_number = models.IntegerField()
     neighbourhood = models.ForeignKey(Neighbourhood, null=True)
