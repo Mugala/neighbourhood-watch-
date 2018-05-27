@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Neighbourhood,Business,User,NewsLetterRecipient,User_profile
-from .forms import NewsLetterForm,NeighbourhoodDetails,BusinessDetails,UserProfile
+from .forms import NewsLetterForm,NeighbourhoodDetails,BusinessDetails,UserProfile,NewAnnouncementForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
@@ -79,7 +79,39 @@ def my_profile(request):
 
 
     return render(request, 'all-updates/user_account.html',{"user_details":user_details,})
-    
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def hood_details(request):
+    details = Neighbourhood.neighbourhood_details()
+
+
+    return render(request, 'all-updates/hood_posts.html',{"details":details,}) 
+
+
+
+@login_required(login_url='/accounts/login/')
+def post_news(request, neighbourhood_id):
+    current_user = request.user
+    announcement = get_object_or_404(Neighbourhood, id=neighbourhood_id)
+
+    if request.method == 'POST':
+        news_form = NewAnnouncementForm(request.POST)
+        if news_form.is_valid():
+            news = news_form.save(commit=False)
+            news.image = announcement
+            news.user = current_user
+            news.save()
+            return redirect("home")
+            
+    else:
+        news_form = NewAnnouncementForm()
+
+    return render(request, 'all-updates/news.html', {"form":news_form, "neighbourhood_id": neighbourhood_id})
+
+
 def search_results(request):
 
     if 'business' in request.GET and request.GET["business"]:

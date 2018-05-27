@@ -11,6 +11,8 @@ urlpatterns = [
     url('^accounts/profile/', views.user_profile, name = 'user_profile'),
     url('^accounts/business_profile/', views.register_business, name = 'register_business'),
     url('^accounts/my_profile/', views.my_profile, name = 'my_profile'),
+    url('^accounts/hood_details/', views.hood_details, name = 'hood_details'),
+    url(r'^post-news/(?P<neighbourhood_id>\d+)', views.post_news, name='post_news'),
 ]
 
 if settings.DEBUG:

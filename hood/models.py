@@ -73,3 +73,16 @@ class Business (models.Model):
         business = cls.objects.filter(business_name__icontains=search_term)
         return business
     
+class Announcement (models.Model):
+    news = models.TextField(blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+   
+
+    def __str__(self):
+        return self.news
+
+    @classmethod
+    def get_news(cls, neighbourhood_id):
+        news = cls.objects.filter(neighbourhood=neighbourhood_id)
+        return news

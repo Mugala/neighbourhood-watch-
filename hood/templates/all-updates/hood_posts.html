@@ -1,0 +1,51 @@
+{%extends 'all-updates/base.html'%} 
+{%load bootstrap3 %}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <h1>Neighbourhood details</h1>
+            <hr>
+          <div class="col-md-6"> 
+            {% for detail in details %} 
+
+            <div class="row">
+              <!-- displaying details -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <h2 class="text-center" class="navbar-brand"> {{ detail.name }} </h2>
+                <h4 class="text-center" class="navbar-brand"> {{ detail.location }} </h4>
+                <h4 class="text-center" class="navbar-brand"> {{ detail.occupants_count }} </h4>
+                <h4 class="text-center" class="navbar-brand"> {{ detail.admin }} </h4>               
+              </div>          
+            </div>          
+            {% empty %}
+            <div class="row">
+              <h2 class="text-center">No Announcements!!!</h2>
+              <a class="navbar-brand" href="{% url 'user_profile' %}">Create your profile</a>
+            </div>
+            {% endfor %}
+          
+          </div>  
+          </div>
+          <div class="row">
+            <h1>Announcements</h1>
+            <hr>
+          <div class="col-md-6"> 
+            {% for post in posts %} 
+
+            <div class="row">
+              <!-- displaying details -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                             
+              </div>          
+            </div>          
+            {% empty %}
+            <div class="row">
+              <h2 class="text-center">No Announcements!!!</h2>
+              <a class="navbar-brand" href="{% url 'post_news' %}">Post your Announcements</a>
+            </div>
+            {% endfor %}
+          
+          </div>  
+          </div>
+        </div>
+{% endblock %}
