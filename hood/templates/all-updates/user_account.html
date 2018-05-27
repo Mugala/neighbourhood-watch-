@@ -6,9 +6,26 @@
             <h1>Your Profile</h1>
             <hr>
           <div class="col-md-6"> 
-            
-            
+            {% for detail in user_details %} 
+
+            <div class="row">
+              <!-- displaying details -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <h2 class="text-center" class="navbar-brand"> {{ detail.name }} </h2>
+                <h2 class="text-center" class="navbar-brand"> {{ detail.id_number }} </h2>
+                <h2 class="text-center" class="navbar-brand"> {{ detail.email }} </h2>
+              </div>
           
+            </div>
+          
+            {% empty %}
+            <div class="row">
+              <h2 class="text-center">You do not have an account</h2>
+              <a class="navbar-brand" href="{% url 'user_profile' %}">Create your profile</a>
+            </div>
+            {% endfor %}
+          
+          </div>  
           </div>
         </div>
        </div>

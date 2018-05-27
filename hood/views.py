@@ -72,10 +72,13 @@ def register_business(request):
         businessform = BusinessDetails()
     return render (request, 'all-updates/business_profile.html',{"businessform":businessform})
 
+
+@login_required(login_url='/accounts/login/')
 def my_profile(request):
+    user_details = User_profile.user_details()
 
 
-    return render(request, 'all-updates/my_profile.html')
+    return render(request, 'all-updates/user_account.html',{"user_details":user_details,})
     
 def search_results(request):
 

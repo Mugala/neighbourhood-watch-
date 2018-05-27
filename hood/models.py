@@ -12,7 +12,7 @@ class NewsLetterRecipient (models.Model):
 class Neighbourhood (models.Model):
     name = models.CharField(max_length = 60)
     location = models.CharField(max_length = 60)
-    occupants_count = models.ForeignKey(User,on_delete=models.CASCADE)
+    occupants_count = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     admin = models.CharField(max_length = 20)
     
     def __str__(self):
@@ -46,6 +46,11 @@ class User_profile (models.Model):
     
     def delete_User(self):
         self.delete()
+
+    @classmethod
+    def user_details(cls):
+        user_details = cls.objects.all()
+        return user_details
 
 class Business (models.Model):
     business_name = models.CharField(max_length = 30)
