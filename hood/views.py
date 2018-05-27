@@ -12,7 +12,7 @@ def welcome (request):
 
 @login_required(login_url='/accounts/login/')
 def home(request):
-    details = Neighbourhood.neighbourhood_details()    
+    hood_details = Neighbourhood.neighbourhood_details()    
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -28,7 +28,7 @@ def home(request):
             HttpResponseRedirect('home')
     else:
         form = NewsLetterForm()
-    return render(request, "home.html", {"details":details, "letterForm":form})
+    return render(request, "home.html", {"hood_details":hood_details, "letterForm":form})
 
 def user_profile(request):  
     current_user = request.user
@@ -58,6 +58,7 @@ def register_hood(request):
         hoodform = NeighbourhoodDetails()
     return render (request, 'all-updates/hood_profile.html',{"hoodform":hoodform})
 
+
 def register_business(request):  
     current_user = request.user
     if request.method =='POST':
@@ -76,9 +77,10 @@ def register_business(request):
 @login_required(login_url='/accounts/login/')
 def my_profile(request):
     user_details = User_profile.user_details()
+    hood_details = Neighbourhood.neighbourhood_details() 
 
 
-    return render(request, 'all-updates/user_account.html',{"user_details":user_details,})
+    return render(request, 'all-updates/user_account.html',{"user_details":user_details,'hood_details':hood_details,})
 
 
 

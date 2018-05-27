@@ -27,6 +27,31 @@
           
           </div>  
           </div>
+          <div class="row">
+            <h1>Your neighbourhood: </h1>
+            <hr>
+          <div class="col-md-6"> 
+            {% for hood_detail in hood_details %} 
+
+            <div class="row">
+              <!-- displaying details -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <h2 class="text-center" class="navbar-brand" > {{ hood_detail.name }} </h2>
+                <h4 class="text-center" class="navbar-brand" > {{ hood_detail.location }} </h4>
+                <a class="navbar-brand" href="{% url 'hood_details' %}">Check hood Profile</a>
+              </div>
+          
+            </div>
+          
+            {% empty %}
+            <div class="row">
+              <h2 class="text-center">You do belong to any neighbourhood</h2>
+              <a class="navbar-brand" href="{% url 'hood_profile' %}">Join a neighbourhood</a>
+            </div>
+            {% endfor %}
+          
+          </div>  
+          </div>
         </div>
        </div>
 {% endblock %}
