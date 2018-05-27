@@ -10,6 +10,7 @@ urlpatterns = [
     url('^accounts/hood_profile/', views.register_hood, name = 'hood_profile'),
     url('^accounts/profile/', views.user_profile, name = 'user_profile'),
     url('^accounts/business_profile/', views.register_business, name = 'register_business'),
+    url('^my_profile/', views.my_profile, name = 'my_profile'),
 ]
 
 if settings.DEBUG:

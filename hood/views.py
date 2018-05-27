@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .models import Neighbourhood,Business,User,NewsLetterRecipient
+from .models import Neighbourhood,Business,User,NewsLetterRecipient,User_profile
 from .forms import NewsLetterForm,NeighbourhoodDetails,BusinessDetails,UserProfile
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
@@ -71,6 +71,11 @@ def register_business(request):
     else:
         businessform = BusinessDetails()
     return render (request, 'all-updates/business_profile.html',{"businessform":businessform})
+
+def my_profile(request):
+
+
+    return render(request, 'all-updates/my_profile.html')
     
 def search_results(request):
 

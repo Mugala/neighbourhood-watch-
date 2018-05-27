@@ -1,5 +1,5 @@
 from django import forms
-from .models import Neighbourhood,Business,User
+from .models import Neighbourhood,Business,User,User_profile
 
 
 class NewsLetterForm(forms.Form):
@@ -22,7 +22,7 @@ class BusinessDetails (forms.ModelForm):
 
 class UserProfile (forms.ModelForm):
     class Meta:
-        model = User
+        model = User_profile
         fields = ['name', 'id_number', 'email',]
         exclude = ['neighbourhood',]
 

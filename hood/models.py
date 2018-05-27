@@ -1,6 +1,7 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ class NewsLetterRecipient (models.Model):
 class Neighbourhood (models.Model):
     name = models.CharField(max_length = 60)
     location = models.CharField(max_length = 60)
-    occupants_count = models.IntegerField(null=True)
+    occupants_count = models.ForeignKey(User,on_delete=models.CASCADE)
     admin = models.CharField(max_length = 20)
     
     def __str__(self):
@@ -33,7 +34,9 @@ class User_profile (models.Model):
     name = models.CharField(max_length = 30)
     id_number = models.IntegerField()
     neighbourhood = models.ForeignKey(Neighbourhood, null=True)
+    post = HTMLField()
     email = models.EmailField()
+    pub_date= models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
