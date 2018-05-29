@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Neighbourhood, User,Business,User_profile
+from .models import Neighbourhood, User, Business, User_profile
 # Register your models here.
 
 

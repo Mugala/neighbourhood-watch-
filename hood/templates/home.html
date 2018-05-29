@@ -1,43 +1,38 @@
-{%extends 'all-updates/base.html'%}
-{% load bootstrap3%}
-{% block content %}
-{{block.super}}
+{%extends 'all-updates/base.html'%} {% load bootstrap3%} {% block content %} {{block.super}}
 
 <div class="container">
-    <h3>Subscribe to the monthly Hood Watch newsletter</h3>
-    <form  action="{%url 'home'%}" method="post">
-      {%csrf_token%}
-  
-      {% bootstrap_form letterForm layout='inline' %}
-      <input type="submit" value="Subscribe">
-    </form>
+  <h3>Subscribe to the monthly Hood Watch newsletter</h3>
+  <form action="{%url 'home'%}" method="post">
+    {%csrf_token%} {% bootstrap_form letterForm layout='inline' %}
+    <input type="submit" value="Subscribe">
+  </form>
 
-      <div class="row">
-        <div>
-          <a class="navbar-brand" href="{% url 'user_profile' %}">Create your Profile</a>
-          <a class="navbar-brand" href="{% url 'my_profile' %}">View your profile</a>
-        </div>
-      </div>
-
-    <!-- Looping through details   -->
-    {% for hood_detail in hood_details %} 
-
-    <div class="row">
-      <!-- displaying details -->
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h4 class="text-center" class="navbar-brand"> {{ hood_detail.name }} </h4>
-        <h6 class="text-center" class="navbar-brand"> {{ hood_detail.location}} </h6>
-      </div>
-  
+  <div class="row">
+    <div>
+      <a class="navbar-brand" href="{% url 'user_profile' %}">Create your Profile</a>
+      <a class="navbar-brand" href="{% url 'my_profile' %}">View your profile</a>
     </div>
-  
-    {% empty %}
-    <div class="row">
-      <h2 class="text-center">No registered neighbourhood</h2>
+  </div>
+
+  <!-- Looping through details   -->
+  {% for hood_detail in hood_details %}
+
+  <div class="row">
+    <!-- displaying details -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h4 class="text-center" class="navbar-brand"> {{ hood_detail.name }} </h4>
+      <h6 class="text-center" class="navbar-brand"> {{ hood_detail.location}} </h6>
     </div>
-    {% endfor %}
-  
-  </div> 
+
+  </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">No registered neighbourhood</h2>
+  </div>
+  {% endfor %}
+
+</div>
 
 
-{% endblock %} 
+{% endblock %}
