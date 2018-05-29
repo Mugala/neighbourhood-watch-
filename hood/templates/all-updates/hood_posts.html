@@ -5,8 +5,11 @@
         <div class="row">
             <h1>Neighbourhood details</h1>
             <hr>
+          {%if detail%}
+          <p>You live in {{detail}}</p>
+        
           <div class="col-md-6"> 
-            {% for detail in hood_details %} 
+          
 
             <div class="row">
               <!-- displaying details -->
@@ -16,13 +19,10 @@
                 <h4 class="text-center" class="navbar-brand"> {{ detail.occupants_count }} </h4>
                 <h4 class="text-center" class="navbar-brand"> {{ detail.admin }} </h4>               
               </div>          
-            </div>          
-            {% empty %}
-            <div class="row">
-              <h2 class="text-center">No Announcements!!!</h2>
-              <a class="navbar-brand" href="{% url 'user_profile'%}">Create your profile</a>
-            </div>
-            {% endfor %}
+            </div> 
+            {% endif %}         
+          
+            
           
           </div>  
           </div>

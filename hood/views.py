@@ -32,7 +32,6 @@ def home(request):
 
 def user_profile(request):  
     current_user = request.user
-    print("hello")
     if request.method =='POST':
         form = UserProfile(request.POST, request.FILES)
         if form.is_valid():
@@ -81,7 +80,7 @@ def my_profile(request):
     hood_details = Neighbourhood.neighbourhood_details()
     print(hood_details)
 
-    return render(request, 'all-updates/user_account.html',{"user_details":user_details,'hood_details':hood_details,})
+    return render(request, 'all-updates/user_account.html',{"user_details":user_details,"hood_details":hood_details,})
 
 
 
@@ -90,9 +89,9 @@ def my_profile(request):
 def hood_details(request, neighbourhood_id):
     print("hello")
     hood_details = get_object_or_404(Neighbourhood, id=neighbourhood_id)
-    print("hello")
+    print(hood_details)
 
-    return render(request, 'all-updates/hood_posts.html',{"hood_details":hood_details,"neighbourhood_id":neighbourhood_id,}) 
+    return render(request, 'all-updates/hood_posts.html',{"detail":hood_details,"neighbourhood_id":neighbourhood_id,}) 
 
 
 
