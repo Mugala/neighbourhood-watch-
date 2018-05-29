@@ -31,6 +31,7 @@ class NeighbourhoodTestClass(TestCase):
     def test_update_method(self):
         updated_rows = Neighbourhood.update_hood(self.hood.id, name = 'Elm court')
         self.assertTrue(updated_rows == 1)
+ 
 
     def test_search_Business(self):
         business = Business.search_by_business("KFC")

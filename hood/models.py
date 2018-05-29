@@ -28,6 +28,17 @@ class Neighbourhood (models.Model):
     def neighbourhood_details(cls):
         details = cls.objects.all()
         return details
+
+    @classmethod
+    def update_hood(cls, hood_id, **kwargs):
+        rows = 0
+        if kwargs is not None:
+            rows = cls.objects.filter(id = hood_id).update(**kwargs)
+
+        return rows
+
+    class Meta:
+        ordering = ['name'] 
         
 
 class User_profile (models.Model):
