@@ -33,7 +33,7 @@ class Neighbourhood (models.Model):
 class User_profile (models.Model):
     name = models.CharField(max_length = 30)
     id_number = models.IntegerField()
-    neighbourhood = models.ForeignKey(Neighbourhood, null=True)
+    neighbourhood = models.OneToOneField(Neighbourhood, null=True)
     post = HTMLField()
     email = models.EmailField()
     pub_date= models.DateTimeField(auto_now_add=True)
@@ -55,7 +55,7 @@ class User_profile (models.Model):
 class Business (models.Model):
     business_name = models.CharField(max_length = 30)
     user = models.ForeignKey(User)
-    neighbourhood = models.ForeignKey(Neighbourhood)
+    neighbourhood = models.OneToOneField(Neighbourhood)
     business_image = models.ImageField(upload_to = 'biz-image/', null= True)
     business_email = models.EmailField()
 

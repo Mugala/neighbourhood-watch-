@@ -8,7 +8,7 @@
           <div class="col-md-6"> 
             {{form.media}}
        
-            <form action="{% url 'hood_profile' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'hood_profile'%}" method="post" enctype="multipart/form-data">
               {% csrf_token %} {% bootstrap_form hoodform %}
               <input type="submit" class="btn btn-success" value="post" >
               <input type="hidden" name="next" value="{{next}}">

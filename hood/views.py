@@ -32,6 +32,7 @@ def home(request):
 
 def user_profile(request):  
     current_user = request.user
+    print("hello")
     if request.method =='POST':
         form = UserProfile(request.POST, request.FILES)
         if form.is_valid():
@@ -77,8 +78,8 @@ def register_business(request):
 @login_required(login_url='/accounts/login/')
 def my_profile(request):
     user_details = User_profile.user_details()
-    hood_details = Neighbourhood.neighbourhood_details() 
-
+    hood_details = Neighbourhood.neighbourhood_details()
+    print(hood_details)
 
     return render(request, 'all-updates/user_account.html',{"user_details":user_details,'hood_details':hood_details,})
 
@@ -86,16 +87,17 @@ def my_profile(request):
 
 
 @login_required(login_url='/accounts/login/')
-def hood_details(request):
-    details = Neighbourhood.neighbourhood_details()
+def hood_details(request, neighbourhood_id):
+    print("hello")
+    hood_details = get_object_or_404(Neighbourhood, id=neighbourhood_id)
+    print("hello")
 
-
-    return render(request, 'all-updates/hood_posts.html',{"details":details,}) 
+    return render(request, 'all-updates/hood_posts.html',{"hood_details":hood_details,"neighbourhood_id":neighbourhood_id,}) 
 
 
 
 @login_required(login_url='/accounts/login/')
-def post_news(request, neighbourhood_id):
+def post_news(request, neighbourhood_id):                       
     current_user = request.user
     announcement = get_object_or_404(Neighbourhood, id=neighbourhood_id)
 

@@ -6,7 +6,7 @@
             <h1>Neighbourhood details</h1>
             <hr>
           <div class="col-md-6"> 
-            {% for detail in details %} 
+            {% for detail in hood_details %} 
 
             <div class="row">
               <!-- displaying details -->
@@ -20,7 +20,7 @@
             {% empty %}
             <div class="row">
               <h2 class="text-center">No Announcements!!!</h2>
-              <a class="navbar-brand" href="{% url 'user_profile' %}">Create your profile</a>
+              <a class="navbar-brand" href="{% url 'user_profile'%}">Create your profile</a>
             </div>
             {% endfor %}
           
